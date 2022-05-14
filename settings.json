@@ -1,0 +1,6 @@
+{
+  "database": {
+    "name": "furnicore",
+    "path": "./furnicore.db"
+  }
+}
