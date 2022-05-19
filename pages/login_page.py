@@ -10,6 +10,7 @@ class LoginPage(Page):
     super().display()
     if self.invalid_credentials: 
       print("# Invalid Credentials # \n")
+      self.invalid_credentials = False
       
     # print("To quit type: !q\n")
     username = input("Username: ")    
@@ -17,7 +18,6 @@ class LoginPage(Page):
     
     valid_login = login.login(username, password)
     if valid_login:
-      self.invalid_credentials = False
       self.controller.next_page = "MainMenuPage"
     else:
       self.invalid_credentials = True

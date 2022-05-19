@@ -58,3 +58,18 @@ class Database(metaclass=Singleton):
             )
     
     return cur.execute(query).fetchall()
+
+  def update_password_by_username(self, username: str, new_password: str):
+    cur = self.__connection.cursor()
+    
+    query = """
+            UPDATE users
+            SET password='{0}'
+            WHERE username='{1}'
+            """.format(
+              new_password.replace("\'", "\'\'"),
+              username.replace("\'", "\'\'")
+            )
+            
+    cur.execute(query)
+    self.__connection.commit()

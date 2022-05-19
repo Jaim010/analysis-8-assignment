@@ -1,6 +1,6 @@
 {
   "database": {
-    "name": "furnicore",
-    "path": "./furnicore.db"
+    "name": "db.sqlite",
+    "path": "./db.sqlite"
   }
 }

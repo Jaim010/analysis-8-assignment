@@ -1,5 +1,4 @@
 from typing import Tuple
-from responses.login_response import LoginResponse
 from utils import Database
 from utils.user import User
 

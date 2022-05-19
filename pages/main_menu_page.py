@@ -11,7 +11,7 @@ class MainMenuPage(Page):
     print(
       f"Welcome {User().first_name}.\n" +
       "\n" + 
-      "1: Something \n" + 
+      "1: Update password \n" + 
       "2: Something \n" + 
       "\n"
       "To:\n" +
@@ -25,3 +25,5 @@ class MainMenuPage(Page):
       logout()
       self.controller.next_page = "LoginPage"
     
+    if user_input == "1":
+      self.controller.next_page = "UpdatePasswordPage"

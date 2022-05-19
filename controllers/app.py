@@ -1,11 +1,9 @@
-from pages.login_page import LoginPage
-from pages.main_menu_page import MainMenuPage
-from pages.start_page import StartPage
+from pages import *
 
 class App:
   def __init__(self) -> None:
     self.pages = {}
-    for PAGE in (StartPage, LoginPage, MainMenuPage):
+    for PAGE in (StartPage, LoginPage, MainMenuPage, UpdatePasswordPage):
       page_name = PAGE.__name__
       page = PAGE(controller=self)
       self.pages[page_name] = page
