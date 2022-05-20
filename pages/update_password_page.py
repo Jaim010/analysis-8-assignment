@@ -1,6 +1,6 @@
 from getpass import getpass
 from pages.page import Page
-from utils.database import Database
+import utils.database as database
 from utils.user import User
 
 class UpdatePasswordPage(Page):
@@ -23,7 +23,7 @@ class UpdatePasswordPage(Page):
     pw_second_entry = input("> Re-enter new password: ")
     
     if pw_entry == pw_second_entry:
-      Database().update_password_by_username(User().username, pw_entry)
+      database.execute_query("UPDATE TABLE user WHERE username='?' AND password='?'", self.controller.user.username, pw_entry)
       print(
         "\n" +
         "Password succesfully update!"

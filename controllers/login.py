@@ -1,22 +1,17 @@
 from typing import Tuple
-from utils import Database
+import utils.database as database
 from utils.user import User
 
-def login(username: str, password: str ) -> bool:
+def login(app, username: str, password: str ) -> bool:
   (is_valid, user) = __validate_login(username, password)
   if (is_valid):
-    User().first_name = user[0]
-    User().last_name = user[1]
-    User().username = user[2]
-    User().authorization_level = user[4]
-    User().registration_date = user[5]
+    app.user = User(user[0], user[1], user[2], user[4], user[5])
     return True
   return False
 
 def __validate_login(username: str, password: str):
-  users = Database().select_user_by_username_password(username, password)
+  users = database.execute_query("SELECT * FROM users WHERE username='?' AND password='?'", username, password)
   
-  print(len(users) != 0)
   if len(users) == 0:
     return (False, ())
   if len(users) > 1:
@@ -25,6 +20,5 @@ def __validate_login(username: str, password: str):
   user = users[0]
   return (True, user)
 
-def logout():
-  User().username = None
-  User().authorization_level = None
+def logout(app):
+  app.user = None

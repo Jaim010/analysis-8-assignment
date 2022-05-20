@@ -16,7 +16,7 @@ class LoginPage(Page):
     username = input("Username: ")    
     password = input("Password: ")
     
-    valid_login = login.login(username, password)
+    valid_login = login.login(self.controller, username, password)
     if valid_login:
       self.controller.next_page = "MainMenuPage"
     else:

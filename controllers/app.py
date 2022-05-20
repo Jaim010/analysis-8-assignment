@@ -1,7 +1,9 @@
 from pages import *
+from utils.user import User
 
 class App:
   def __init__(self) -> None:
+    self.user: User = None
     self.pages = {}
     for PAGE in (StartPage, LoginPage, MainMenuPage, UpdatePasswordPage):
       page_name = PAGE.__name__

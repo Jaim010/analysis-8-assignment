@@ -9,7 +9,7 @@ class MainMenuPage(Page):
   def display(self) -> None:
     super().display()
     print(
-      f"Welcome {User().first_name}.\n" +
+      f"Welcome {self.controller.user.username}.\n" +
       "\n" + 
       "1: Update password \n" + 
       "2: Something \n" + 
