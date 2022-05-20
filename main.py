@@ -6,7 +6,6 @@ if __name__ == "__main__":
   with open("./settings.json") as file:
     settings = json.load(file)
     
-    
   database.create_connection(settings["database"]["path"])
   database.setup()
   

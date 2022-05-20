@@ -1,5 +1,8 @@
 {
   "database": {
     "path": "./db.sqlite"
+  },
+  "encryption": { 
+    "shift": 39
   }
 }

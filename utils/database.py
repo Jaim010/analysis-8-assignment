@@ -3,13 +3,13 @@ import sqlite3
 
 __connection = None
 
-def create_connection(path: str):
+def create_connection(path: str) -> sqlite3.Connection:
   global __connection
   __connection = sqlite3.connect(path)
   return __connection
 
 
-def setup():
+def setup() -> None:
   cur = __connection.cursor()
   cur.execute("""CREATE TABLE IF NOT EXISTS members ( 
               first_name TEXT, 
@@ -30,13 +30,13 @@ def setup():
               registration_date DATE 
   );""")
   cur.execute(f"""INSERT INTO users 
-              SELECT 'Jamey', 'Schaap', 'admin', '123', 2, '{date.today()}'
+              SELECT '-', '-', 'superadmin', 'Admin321!', 3, '{date.today()}'
               WHERE NOT EXISTS (SELECT * FROM users)
               ;""")
   __connection.commit()
 
   
-def execute_query(query: str, *args: any):
+def execute_query(query: str, *args: any) -> None or any:
   query = query.strip()
   
   expected_amount_args = query.count("?")
@@ -55,4 +55,10 @@ def execute_query(query: str, *args: any):
   else:
     __connection.commit()
   
-  
+"""SELECT password FROM users WHERE username='?'"""
+"""SELECT * FROM users"""
+"""SELECT * FROM members"""
+"""INSERT INTO users (first_name, last_name, username, password, authorization_level, registration_date) VALUES (?, ?, ?, ?, ?, ?)"""
+"""UPDATE user SET ~field~='?' WHERE ~field~='?'"""
+"""UPDATE user SET password='?' WHERE username='?'"""
+"""DELETE FROM members WHERE membership_id='?'"""
