@@ -8,7 +8,7 @@ __ADD = lambda x,y: x + y
 __SUBTRACT = lambda x,y: x - y
 
 def __ceasar_cipher(func: callable):
-  def encryptor(text: str):
+  def encryptor(text: str) -> str:
     result = ""
     for char in text:
       result += chr(
@@ -19,8 +19,8 @@ def __ceasar_cipher(func: callable):
   
   return encryptor
 
-def encrypt(text: str):
+def encrypt(text: str) -> str:
   return __ceasar_cipher(__ADD)(text)
 
-def decrypt(text: str):
+def decrypt(text: str) -> str:
   return __ceasar_cipher(__SUBTRACT)(text)

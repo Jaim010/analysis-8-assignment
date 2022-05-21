@@ -19,7 +19,7 @@ def setup() -> None:
               city TEXT, 
               email_address TEXT, 
               mobile_phone TEXT, 
-              registration_date DATE, 
+              registration_date TEXT, 
               membership_id INTEGER 
   );""")
   cur.execute("""CREATE TABLE IF NOT EXISTS users ( 
@@ -28,7 +28,7 @@ def setup() -> None:
               username TEXT, 
               password TEXT, 
               authorization_level INTEGER, 
-              registration_date DATE 
+              registration_date TEXT 
   );""")
   cur.execute(f"""INSERT INTO users 
               SELECT '', '', '{encrypt("superadmin")}', '{encrypt("Admin321!")}', 3, '{date.today()}'
@@ -37,7 +37,7 @@ def setup() -> None:
   __connection.commit()
 
   
-def execute_query(query: str, *args: any) -> None or any:
+def execute_query(query: str, *args: any) -> None or list(tuple(any)):
   query = query.strip()
   
   expected_amount_args = query.count("?")
@@ -49,7 +49,7 @@ def execute_query(query: str, *args: any) -> None or any:
       fomatted_arg = "\'" + arg.replace("\'", "\'\'") + "\'"
       query = query.replace("?", fomatted_arg, 1)
     else:
-      query = query.replace("?", arg, 1)
+      query = query.replace("?", str(arg), 1)
     
   cur = __connection.cursor()
   
@@ -62,13 +62,14 @@ def execute_query(query: str, *args: any) -> None or any:
         if type(field) == str:
           field = field.replace("\'\'", "\'")
     return result
+  
   else:
     __connection.commit()
   
-"""SELECT password FROM users WHERE username='?'"""
+"""SELECT password FROM users WHERE username=?"""
 """SELECT * FROM users"""
 """SELECT * FROM members"""
 """INSERT INTO users (first_name, last_name, username, password, authorization_level, registration_date) VALUES (?, ?, ?, ?, ?, ?)"""
-"""UPDATE user SET ~field~='?' WHERE ~field~='?'"""
-"""UPDATE user SET password='?' WHERE username='?'"""
-"""DELETE FROM members WHERE membership_id='?'"""
+"""UPDATE user SET ~field~=? WHERE ~field~=?"""
+"""UPDATE user SET password=? WHERE username=?"""
+"""DELETE FROM members WHERE membership_id=?"""
