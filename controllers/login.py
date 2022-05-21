@@ -1,16 +1,17 @@
 from typing import Tuple
 import utils.database as database
+from utils.encryption import decrypt, encrypt
 from utils.user import User
 
 def login(app, username: str, password: str ) -> bool:
   (is_valid, user) = __validate_login(username, password)
   if (is_valid):
-    app.user = User(user[0], user[1], user[2], user[4], user[5])
+    app.user = User(user[0], user[1], decrypt(user[2]), user[4], user[5])
     return True
   return False
 
 def __validate_login(username: str, password: str):
-  users = database.execute_query("SELECT * FROM users WHERE username='?' AND password='?'", username, password)
+  users = database.execute_query("SELECT * FROM users WHERE username=? AND password=?", encrypt(username), encrypt(password))
   
   if len(users) == 0:
     return (False, ())

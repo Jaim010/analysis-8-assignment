@@ -1,5 +1,6 @@
 from datetime import date
 import sqlite3
+from utils.encryption import encrypt
 
 __connection = None
 
@@ -30,7 +31,7 @@ def setup() -> None:
               registration_date DATE 
   );""")
   cur.execute(f"""INSERT INTO users 
-              SELECT '-', '-', 'superadmin', 'Admin321!', 3, '{date.today()}'
+              SELECT '', '', '{encrypt("superadmin")}', '{encrypt("Admin321!")}', 3, '{date.today()}'
               WHERE NOT EXISTS (SELECT * FROM users)
               ;""")
   __connection.commit()
@@ -44,14 +45,23 @@ def execute_query(query: str, *args: any) -> None or any:
     raise 
   
   for arg in args:
-    query = query.replace("?", str(arg).replace("\'", "\'\'"), 1)
+    if type(arg) == str:
+      fomatted_arg = "\'" + arg.replace("\'", "\'\'") + "\'"
+      query = query.replace("?", fomatted_arg, 1)
+    else:
+      query = query.replace("?", arg, 1)
     
   cur = __connection.cursor()
   
   cur.execute(query)
   
   if query[0:6].upper() == "SELECT":
-    return cur.fetchall()
+    result = cur.fetchall()
+    for row in result:
+      for field in row:
+        if type(field) == str:
+          field = field.replace("\'\'", "\'")
+    return result
   else:
     __connection.commit()
   

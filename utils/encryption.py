@@ -1,9 +1,9 @@
 import json
 
 with open("./settings.json") as file:
-  settings = json.load(file)
+  __SETTINGS = json.load(file)
   
-__SHIFT = settings["encryption"]["shift"]
+__SHIFT = __SETTINGS["encryption"]["shift"]
 __ADD = lambda x,y: x + y
 __SUBTRACT = lambda x,y: x - y
 
