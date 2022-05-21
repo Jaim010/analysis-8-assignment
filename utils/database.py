@@ -37,7 +37,7 @@ def setup() -> None:
   __connection.commit()
 
   
-def execute_query(query: str, *args: any) -> None or list(tuple(any)):
+def execute_query(query: str, *args: any) -> None or list:
   query = query.strip()
   
   expected_amount_args = query.count("?")
