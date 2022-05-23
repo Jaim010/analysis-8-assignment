@@ -9,4 +9,4 @@ if __name__ == "__main__":
   database.create_connection(settings["database"]["path"])
   database.setup()
   
-  # app = App()
+  app = App()

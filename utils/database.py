@@ -11,6 +11,7 @@ def create_connection(path: str) -> sqlite3.Connection:
 
 
 def setup() -> None:
+  assert __connection != None
   cur = __connection.cursor()
   cur.execute("""CREATE TABLE IF NOT EXISTS members ( 
               first_name TEXT, 
@@ -30,6 +31,14 @@ def setup() -> None:
               authorization_level INTEGER, 
               registration_date TEXT 
   );""")
+  cur.execute("""CREATE TABLE IF NOT EXISTS logs ( 
+              id INTEGER PRIMARY KEY,
+              username TEXT, 
+              date DATE, 
+              activity TEXT, 
+              information TEXT, 
+              suspicious BOOLEAN
+  );""")
   cur.execute(f"""INSERT INTO users 
               SELECT '', '', '{encrypt("superadmin")}', '{encrypt("Admin321!")}', 3, '{date.today()}'
               WHERE NOT EXISTS (SELECT * FROM users)
@@ -43,6 +52,8 @@ def execute_query(query: str, *args: any) -> None or list:
   expected_amount_args = query.count("?")
   if (expected_amount_args != len(args)):
     raise 
+  
+  assert __connection != None
   
   for arg in args:
     if type(arg) == str:
