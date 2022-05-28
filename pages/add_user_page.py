@@ -1,6 +1,5 @@
 from datetime import date
 from getpass import getpass
-from logging.config import valid_ident
 from pages.page import Page
 import utils.database as database
 from utils.encryption import encrypt
