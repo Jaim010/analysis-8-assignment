@@ -12,7 +12,7 @@ def __ceasar_cipher(func: callable):
     result = ""
     for char in text:
       result += chr(
-        func(ord(char), __SHIFT)
+        func(ord(char), __SHIFT) % 0x110000
       )
   
     return result

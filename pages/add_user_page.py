@@ -31,7 +31,7 @@ class AddUserPage(Page):
     
     database.execute_query(f"INSERT INTO users VALUES (?, ?, ?, ?, ?, ?)", encrypt(first_name), encrypt(last_name), encrypt(username), encrypt(password), authorization_level_input, date.today())
     
-    logger.log("Created account", f"Username: {username}, Role: {authentication.to_name(authorization_level_input)}", self.controller.user, False)
+    logger.log("Created account", f"Username: {username}, Role: {authentication.to_name(int(authorization_level_input))}", self.controller.user, False)
     print("Created the user.")
     
     getpass("Press enter to continue to the main menu...")

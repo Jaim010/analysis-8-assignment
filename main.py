@@ -10,3 +10,11 @@ if __name__ == "__main__":
   database.setup()
   
   app = App()
+
+  ## Debug encrypted .log file ##
+  # from utils.logger import decrypt_log
+  # with open("./.log", "r", encoding="utf-8") as f:
+  #   content = f.readlines()
+  #   content = decrypt_log(content)
+  #   for line in content:
+  #     print(line)
