@@ -1,5 +1,6 @@
 from getpass import getpass
 from pages.page import Page
+from utils import logger
 import utils.database as database
 from utils.encryption import decrypt
 import utils.authentication as authentication
@@ -25,6 +26,12 @@ class ListUsersPage(Page):
             + f"Name: {first_name} {last_name}\n"
             + f"Info: {username} ({authorization_level_name})"
         )
+    
+    logger.log(
+      activity="Listed all users",
+      information=r"N/A",
+      user=self.controller.user
+    )
     
     getpass("Press enter to continue to the main menu...")
     self.controller.next_page = "MainMenuPage"

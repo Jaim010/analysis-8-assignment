@@ -31,14 +31,6 @@ def setup() -> None:
               authorization_level INTEGER, 
               registration_date TEXT 
   );""")
-  cur.execute("""CREATE TABLE IF NOT EXISTS logs ( 
-              id INTEGER PRIMARY KEY,
-              username TEXT, 
-              date DATE, 
-              activity TEXT, 
-              information TEXT, 
-              suspicious BOOLEAN
-  );""")
   cur.execute(f"""INSERT INTO users 
               SELECT '', '', '{encrypt("superadmin")}', '{encrypt("Admin321!")}', 3, '{date.today()}'
               WHERE NOT EXISTS (SELECT * FROM users)
@@ -76,11 +68,3 @@ def execute_query(query: str, *args: any) -> None or list:
   
   else:
     __connection.commit()
-  
-"""SELECT password FROM users WHERE username=?"""
-"""SELECT * FROM users"""
-"""SELECT * FROM members"""
-"""INSERT INTO users (first_name, last_name, username, password, authorization_level, registration_date) VALUES (?, ?, ?, ?, ?, ?)"""
-"""UPDATE user SET ~field~=? WHERE ~field~=?"""
-"""UPDATE user SET password=? WHERE username=?"""
-"""DELETE FROM members WHERE membership_id=?"""
