@@ -16,10 +16,10 @@ class AddUserPage(Page):
     super().display()
     
     print("Please enter the information of the user you want to add.")
-    first_name = validation.get_user_input("First name: ", [validation.check_length(2, 20)])
-    last_name = validation.get_user_input("Last name: ", [validation.check_length(2, 20)])
-    username = validation.get_user_input("Username: ", [validation.is_valid_username()])
-    password = validation.get_user_input("Password: ", [validation.is_valid_password()])
+    first_name = validation.get_user_input("> Enter their first name: ", [validation.check_length(2, 20)])
+    last_name = validation.get_user_input("> Enter their last name: ", [validation.check_length(2, 20)])
+    username = validation.get_user_input("> Enter their username: ", [validation.is_valid_username()])
+    password = validation.get_user_input("> Enter their password: ", [validation.is_valid_password()])
     
     authorization_level = self.controller.user.authorization_level
     
@@ -28,7 +28,7 @@ class AddUserPage(Page):
         
         print(f"{i} - {authorization_level_name}")
         
-    authorization_level_input = validation.get_user_input("Role: ", [validation.check_options(range(1, authorization_level))])
+    authorization_level_input = validation.get_user_input("> Enter their role: ", [validation.check_options(range(1, authorization_level))])
     
     database.execute_query(f"INSERT INTO users VALUES (?, ?, ?, ?, ?, ?)", encrypt(first_name), encrypt(last_name), encrypt(username), encrypt(password), authorization_level_input, date.today())
     
