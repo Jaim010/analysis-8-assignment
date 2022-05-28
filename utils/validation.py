@@ -66,12 +66,36 @@ def check_format(regex: str):
     
     return validator
 
+def check_options(options: list[any]):
+    def validator(input: str) -> Result:
+        for option in options:
+            if str(option) == input:
+                return ValidResult()
+        
+        return InvalidResult("The input does not match the available options.")
+    
+    return validator
+
 def is_email():
     return check_format("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}")
 
+def is_valid_username():
+    return check_format("^[A-Za-z]{1}[_'.A-Za-z0-9]{5,9}$")
+
+def is_valid_password():
+    return check_format("^[~!@#$%&_\-+=`|\\(){}[\]:;'<>,.?/A-Za-z0-9]{8,30}$")
+
 # TODO - maybe needs to be expanded a bit.
 def is_phone_number():
-    return check_format("^(\s?|-)([0-9]\s{0,3}){8}$")
+    def validator(input: str):
+        if not check_format("^(\s?|-)([0-9]\s{0,3}){8}$")(input).valid:
+            return InvalidResult("The input does not match the format.")
+        
+        # TODO
+        
+        return ValidResult()
+    
+    return validator
 
 def is_number():
     return check_format("[0-9]+")

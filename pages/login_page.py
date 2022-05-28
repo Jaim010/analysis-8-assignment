@@ -1,5 +1,6 @@
 from pages.page import Page
 from controllers import login
+import utils.validation as validation
 
 class LoginPage(Page):
   def __init__(self, controller) -> None:
@@ -13,8 +14,8 @@ class LoginPage(Page):
       self.invalid_credentials = False
       
     # print("To quit type: !q\n")
-    username = input("Username: ")    
-    password = input("Password: ")
+    username = validation.get_user_input("Username: ", [validation.is_valid_username()])
+    password = validation.get_user_input("Password: ", [validation.is_valid_password()])
     
     valid_login = login.login(self.controller, username, password)
     if valid_login:

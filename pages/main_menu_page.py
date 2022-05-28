@@ -12,7 +12,8 @@ class MainMenuPage(Page):
       f"Welcome {self.controller.user.username}.\n" +
       "\n" + 
       "1: Update password \n" + 
-      "2: Something \n" + 
+      "2: List users \n" + 
+      "3: Add user \n" +
       "\n"
       "To:\n" +
       " > logout type: /lo\n" + 
@@ -22,8 +23,17 @@ class MainMenuPage(Page):
     user_input = input()
     
     if user_input == "/lo":
-      logout()
+      logout(self)
       self.controller.next_page = "LoginPage"
+    
+    if user_input == "/q":
+      exit()
     
     if user_input == "1":
       self.controller.next_page = "UpdatePasswordPage"
+    if user_input == "2":
+      self.controller.next_page = "ListUsersPage"
+      
+    if self.controller.user.authorization_level > 1:
+      if user_input == "3":
+        self.controller.next_page = "AddUserPage"
