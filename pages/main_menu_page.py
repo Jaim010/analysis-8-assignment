@@ -20,6 +20,7 @@ class MainMenuPage(Page):
       "6: Reset user password \n" +
       "7: Add new member \n" +
       "9: Search member details \n" +
+      "10: Delete member account \n" +
       "\n"
       "To:\n" +
       " > logout type: /lo\n" + 
@@ -54,3 +55,5 @@ class MainMenuPage(Page):
       self.controller.next_page = "AddMemberPage"
     if user_input == "9":
       self.controller.next_page = "SearchMemberPage"
+    if user_input == "10" and self.controller.user.authorization_level > 1:
+      self.controller.next_page = "DeleteMemberAccountPage"

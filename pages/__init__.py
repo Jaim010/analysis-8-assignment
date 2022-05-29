@@ -12,3 +12,4 @@ from pages.reset_user_password_page import ResetUserPasswordPage
 
 from pages.add_member_page import AddMemberPage
 from pages.search_member_page import SearchMemberPage
+from pages.delete_member_account_page import DeleteMemberAccountPage
