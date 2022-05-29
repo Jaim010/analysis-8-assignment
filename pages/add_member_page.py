@@ -4,8 +4,8 @@ from pages.page import Page
 import utils.database as database
 from utils.encryption import encrypt
 import utils.validation as validation
-import utils.authentication as authentication
 import utils.logger as logger
+import random
 
 class AddMemberPage(Page):
   def __init__(self, controller) -> None:
@@ -24,8 +24,15 @@ class AddMemberPage(Page):
     email = validation.get_user_input("> Enter their email: ", [validation.is_email()])
     phonenumber = validation.get_user_input("> Enter their phone number: +31-6-", [validation.is_phone_number()])
     
-    # TODO
-    membership_id = "123"
+    membership_id = "" + str(random.randint(1, 9))
+    for _ in range(1, 9):
+      membership_id += str(random.randint(0, 9))
+
+    total = 0
+    for char in membership_id:
+      total += int(char)
+
+    membership_id += str(total % 10)
     
     database.execute_query(f"INSERT INTO members VALUES (?, ?, ?, ?, ?, ?, ?, ?)", encrypt(first_name), encrypt(last_name), encrypt(address), encrypt(city), encrypt(email), encrypt(phonenumber), str(datetime.now()), membership_id)
     logger.log("Added member", f"Added member {first_name} {last_name}", self.controller.user, False)
