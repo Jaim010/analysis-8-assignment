@@ -6,8 +6,13 @@ from pages.update_password_page import UpdatePasswordPage
 from pages.list_users_page import ListUsersPage
 
 from pages.add_user_page import AddUserPage
+from pages.update_user_account_page import UpdateUserAccountPage
 from pages.delete_user_account_page import DeleteUserAccountPage
 from pages.reset_user_password_page import ResetUserPasswordPage
 
 from pages.view_log_page import ViewLogPage
 from pages.create_backup_page import CreateBackupPage
+from pages.add_member_page import AddMemberPage
+from pages.update_member_account_page import UpdateMemberAccountPage
+from pages.search_member_page import SearchMemberPage
+from pages.delete_member_account_page import DeleteMemberAccountPage
