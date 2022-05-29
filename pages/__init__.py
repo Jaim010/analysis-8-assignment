@@ -9,3 +9,6 @@ from pages.add_user_page import AddUserPage
 from pages.update_user_account_page import UpdateUserAccountPage
 from pages.delete_user_account_page import DeleteUserAccountPage
 from pages.reset_user_password_page import ResetUserPasswordPage
+
+from pages.add_member_page import AddMemberPage
+from pages.search_member_page import SearchMemberPage

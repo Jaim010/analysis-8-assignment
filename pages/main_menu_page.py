@@ -1,5 +1,6 @@
 from pages.page import Page
 from controllers.login import logout
+from utils import user
 from utils.user import User
 
 class MainMenuPage(Page):
@@ -17,6 +18,8 @@ class MainMenuPage(Page):
       "4: Update user account \n" +
       "5: Delete user account \n" +
       "6: Reset user password \n" +
+      "7: Add new member \n" +
+      "9: Search member details \n" +
       "\n"
       "To:\n" +
       " > logout type: /lo\n" + 
@@ -46,3 +49,8 @@ class MainMenuPage(Page):
         self.controller.next_page = "DeleteUserAccountPage"
       if user_input == "6":
         self.controller.next_page = "ResetUserPasswordPage"
+        
+    if user_input == "7":
+      self.controller.next_page = "AddMemberPage"
+    if user_input == "9":
+      self.controller.next_page = "SearchMemberPage"
