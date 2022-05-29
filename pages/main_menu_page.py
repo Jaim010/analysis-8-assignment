@@ -19,6 +19,7 @@ class MainMenuPage(Page):
       "5: Delete user account \n" +
       "6: Reset user password \n" +
       "7: Add new member \n" +
+      "8: Update member account \n" +
       "9: Search member details \n" +
       "10: Delete member account \n" +
       "\n"
@@ -53,6 +54,8 @@ class MainMenuPage(Page):
         
     if user_input == "7":
       self.controller.next_page = "AddMemberPage"
+    if user_input == "8":
+      self.controller.next_page = "UpdateMemberAccountPage"
     if user_input == "9":
       self.controller.next_page = "SearchMemberPage"
     if user_input == "10" and self.controller.user.authorization_level > 1:
