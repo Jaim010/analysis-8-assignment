@@ -37,3 +37,8 @@ def decrypt_log(encrypted_content: list[str]) -> list[str]:
   
   return decrypted_content
   
+  
+def get_log_content() -> list[str]:
+  with open("./.log", "r", encoding="utf-8") as f:
+    encrypted_content = f.readlines()
+  return encrypted_content

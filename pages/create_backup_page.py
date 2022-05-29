@@ -1,4 +1,4 @@
-import getpass
+from getpass import getpass
 import time
 from pages.page import Page
 from utils import backup, logger
@@ -16,9 +16,13 @@ class CreateBackupPage(Page):
     (succes, err) = backup.create(filename)
     
     if succes:
-      print(f"Zip file has been created with name: {filename}.zip")
-      act="[Succes] Created backup",
-      info=f"Created backup with name {filename}.zip",
+      print(
+        "Zip file has been created:\n" + 
+        f" - With name: {filename}.zip\n" +
+        f" - In folder: /backups/\n" 
+      )
+      act="[Succes] Created backup"
+      info=f"Created backup with name /backups/{filename}.zip"
 
     else:    
       print("[Error] Something went wrong whilst creating the zip file...")

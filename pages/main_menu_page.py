@@ -16,6 +16,8 @@ class MainMenuPage(Page):
       "3: Add user \n" +
       "5: Delete user account \n" +
       "6: Reset user password \n" +
+      "7: Create backup \n" +
+      "8: View log \n" +
       "\n"
       "To:\n" +
       " > logout type: /lo\n" + 
@@ -43,3 +45,7 @@ class MainMenuPage(Page):
         self.controller.next_page = "DeleteUserAccountPage"
       if user_input == "6":
         self.controller.next_page = "ResetUserPasswordPage"
+      if user_input == "7":
+        self.controller.next_page = "CreateBackupPage"
+      if user_input == "8":
+        self.controller.next_page = "ViewLogPage"
