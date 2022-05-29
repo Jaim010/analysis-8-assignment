@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 import sqlite3
 from utils.encryption import encrypt
 
@@ -32,7 +32,7 @@ def setup() -> None:
               registration_date TEXT 
   );""")
   cur.execute(f"""INSERT INTO users 
-              SELECT '', '', '{encrypt("superadmin")}', '{encrypt("Admin321!")}', 3, '{date.today()}'
+              SELECT '', '', '{encrypt("superadmin")}', '{encrypt("Admin321!")}', 3, '{str(datetime.now())}'
               WHERE NOT EXISTS (SELECT * FROM users)
               ;""")
   __connection.commit()

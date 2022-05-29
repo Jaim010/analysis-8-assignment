@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 from getpass import getpass
 from pages.page import Page
 import utils.database as database
@@ -27,7 +27,7 @@ class AddMemberPage(Page):
     # TODO
     membership_id = "123"
     
-    database.execute_query(f"INSERT INTO members VALUES (?, ?, ?, ?, ?, ?, ?, ?)", encrypt(first_name), encrypt(last_name), encrypt(address), encrypt(city), encrypt(email), encrypt(phonenumber), date.today(), membership_id)
+    database.execute_query(f"INSERT INTO members VALUES (?, ?, ?, ?, ?, ?, ?, ?)", encrypt(first_name), encrypt(last_name), encrypt(address), encrypt(city), encrypt(email), encrypt(phonenumber), str(datetime.now()), membership_id)
     logger.log("Added member", f"Added member {first_name} {last_name}", self.controller.user, False)
     
     print("Added the member to the database.")
