@@ -4,7 +4,7 @@ from datetime import datetime
 
 __LOG_PATH = "./.log"
 
-def log(activity: str, information: str, user: User, suspicious: bool = False):
+def log(activity: str, information: str, user: User, suspicious: bool = False) -> None:
   username = user.username if user != None else "" 
 
   separator = "\t"
@@ -39,6 +39,6 @@ def decrypt_log(encrypted_content: list[str]) -> list[str]:
   
   
 def get_log_content() -> list[str]:
-  with open("./.log", "r", encoding="utf-8") as f:
+  with open(__LOG_PATH, "r", encoding="utf-8") as f:
     encrypted_content = f.readlines()
   return encrypted_content

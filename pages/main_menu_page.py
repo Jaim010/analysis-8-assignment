@@ -22,6 +22,8 @@ class MainMenuPage(Page):
       "8: Update member account \n" +
       "9: Search member details \n" +
       "10: Delete member account \n" +
+      "11: View log content \n" +
+      "12: Create system backup \n" +
       "\n"
       "To:\n" +
       " > logout type: /lo\n" + 
@@ -60,3 +62,7 @@ class MainMenuPage(Page):
       self.controller.next_page = "SearchMemberPage"
     if user_input == "10" and self.controller.user.authorization_level > 1:
       self.controller.next_page = "DeleteMemberAccountPage"
+    if user_input == "11":
+      self.controller.next_page = "ViewLogPage"
+    if user_input == "12" :
+      self.controller.next_page = "CreateBackupPage"

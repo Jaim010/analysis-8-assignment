@@ -7,7 +7,7 @@ __SHIFT = __SETTINGS["encryption"]["shift"]
 __ADD = lambda x,y: x + y
 __SUBTRACT = lambda x,y: x - y
 
-def __ceasar_cipher(func: callable):
+def __ceasar_cipher(func: callable) -> callable:
   def encryptor(text: str) -> str:
     result = ""
     for char in text:

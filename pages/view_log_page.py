@@ -9,7 +9,6 @@ class ViewLogPage(Page):
     
   def display(self) -> None:
     super().display()
-    
    
     encrypted_content = logger.get_log_content()
     decrypted_content = logger.decrypt_log(encrypted_content)
