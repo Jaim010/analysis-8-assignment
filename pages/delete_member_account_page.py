@@ -19,6 +19,7 @@ class DeleteMemberAccountPage(Page):
     
     if len(members) == 0:
         print(f"\nNo member exists with the specified membership id.")
+        logger.log("Member deletion", f"Deletion failed, No member exists with membership id {membership_id}", self.controller.user, False)
     else:
         database.execute_query("DELETE FROM members WHERE membership_id=?", membership_id)        
         logger.log("Member deletion", f"The member with membership id {membership_id} has been deleted", self.controller.user, False)

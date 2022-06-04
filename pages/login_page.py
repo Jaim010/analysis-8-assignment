@@ -1,6 +1,6 @@
 from pages.page import Page
 from controllers import login
-import utils.validation as validation
+from utils import validation, logger
 
 class LoginPage(Page):
   def __init__(self, controller) -> None:
@@ -20,6 +20,16 @@ class LoginPage(Page):
     valid_login = login.login(self.controller, username, password)
     if valid_login:
       self.controller.next_page = "MainMenuPage"
+      logger_info = f"Succes with username: {username}"
+      
     else:
       self.invalid_credentials = True
       self.controller.next_page = "LoginPage"
+      logger_info = f"Failed with username: {username} | password: {password}"
+    
+    logger.log(
+      activity="Login",
+      information=logger_info,
+      user=None,
+      suspicious= True if login.login_attempts >= 3 else False
+    )

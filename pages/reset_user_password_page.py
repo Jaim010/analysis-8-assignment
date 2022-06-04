@@ -21,6 +21,12 @@ class ResetUserPasswordPage(Page):
     
     if len(users) == 0:
         print(f"\nNo user exists with the username {username} (or you do not have the permission to update their password)")
+        logger.log(
+          "Password update", 
+          f"\nNo user exists with the username {username} or this user does not have permission to update their password", 
+          self.controller.user, 
+          False
+        )
     else:
         N = 16
         password = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(N))

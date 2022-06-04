@@ -1,11 +1,7 @@
-from datetime import date
 from getpass import getpass
 from pages.page import Page
-import utils.database as database
-from utils.encryption import decrypt, encrypt
-import utils.validation as validation
-import utils.authentication as authentication
-import utils.logger as logger
+from utils import database, validation, logger
+from utils.encryption import decrypt
 
 class SearchMemberPage(Page):
   def __init__(self, controller) -> None:
@@ -36,6 +32,12 @@ class SearchMemberPage(Page):
                 print("\n")
                 
                 break
+    
+    logger.log(
+      activity="Searching for members",
+      information=f"Search query parameter: {query}",
+      user=self.controller.user,
+    )
     
     getpass("Press enter to continue to the main menu...")
     self.controller.next_page = "MainMenuPage"

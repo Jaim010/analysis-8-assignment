@@ -1,7 +1,6 @@
 from pages.page import Page
 from controllers.login import logout
-from utils import user
-from utils.user import User
+from utils import logger
 
 class MainMenuPage(Page):
   def __init__(self, controller) -> None:
@@ -44,6 +43,11 @@ class MainMenuPage(Page):
       self.controller.next_page = "LoginPage"
     
     if user_input == "/q":
+      logger.log(
+        activity="Main Menu",
+        information=f"Exitting application",
+        user=self.controller.user,
+      )
       exit()
     
     if user_input == "1":
@@ -74,3 +78,10 @@ class MainMenuPage(Page):
         self.controller.next_page = "CreateBackupPage"
       if user_input == "13":
         self.controller.next_page = "LoadBackupPage"
+
+    logger.log(
+      activity="Main Menu",
+      information=f"User entered: {user_input}, continuing to: {self.controller.next_page}",
+      user=self.controller.user,
+    )
+    

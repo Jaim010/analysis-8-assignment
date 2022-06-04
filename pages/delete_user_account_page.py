@@ -20,6 +20,7 @@ class DeleteUserAccountPage(Page):
     
     if len(users) == 0:
         print(f"\nNo user exists with the username {username} (or you do not have the permission to delete their account)")
+        logger.log("Member deletion", f"Deletion failed, No user exists with the username {username} or user does not have permission to delete this account", self.controller.user, False)
     else:
         database.execute_query("DELETE FROM users WHERE username=?", encrypt(username))        
         logger.log("Account deletion", f"The account with username {username} has been deleted", self.controller.user, False)
