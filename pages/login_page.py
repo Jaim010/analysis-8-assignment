@@ -30,6 +30,6 @@ class LoginPage(Page):
     logger.log(
       activity="Login",
       information=logger_info,
-      user=None,
+      user="System",
       suspicious= True if login.login_attempts >= 3 else False
     )

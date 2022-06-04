@@ -4,9 +4,11 @@ from datetime import datetime
 
 __LOG_PATH = "./.log"
 
-def log(activity: str, information: str, user: User, suspicious: bool = False) -> None:
-  username = user.username if user != None else "" 
-
+def log(activity: str, information: str, user: User | str, suspicious: bool = False) -> None:
+  if type(user) == User:
+    username = user.username if user != None else "" 
+  username = user
+  
   separator = "\t"
   with open(__LOG_PATH, "a+", encoding="utf-8") as f:
     f.seek(0)

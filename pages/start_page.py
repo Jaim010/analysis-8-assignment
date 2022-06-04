@@ -11,7 +11,7 @@ class StartPage(Page):
     logger.log(
       activity="Start page",
       information="N\A",
-      user=None
+      user="System"
     )
     
     print(
