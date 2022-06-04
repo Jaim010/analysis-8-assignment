@@ -24,3 +24,23 @@ def encrypt(text: str) -> str:
 
 def decrypt(text: str) -> str:
   return __ceasar_cipher(__SUBTRACT)(text)
+
+
+if __name__ == "__main__":
+  import sys
+  if len(sys.argv) > 3:
+    raise f"Too many arguments. Expected 2, got {len(sys.argv)}" 
+  
+  action: callable
+  
+  if sys.argv[1] == "-d":
+    action = decrypt
+  elif sys.argv[1] == "-e":
+    action = encrypt
+  else:
+    raise f"Invalid flag"  
+  
+  result = action(sys.argv[2])
+  print(result)
+  
+  

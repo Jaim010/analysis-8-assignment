@@ -16,3 +16,4 @@ from pages.add_member_page import AddMemberPage
 from pages.update_member_account_page import UpdateMemberAccountPage
 from pages.search_member_page import SearchMemberPage
 from pages.delete_member_account_page import DeleteMemberAccountPage
+from pages.load_backup_page import LoadBackupPage

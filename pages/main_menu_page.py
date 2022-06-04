@@ -72,5 +72,5 @@ class MainMenuPage(Page):
         self.controller.next_page = "ViewLogPage"
       if user_input == "12":
         self.controller.next_page = "CreateBackupPage"
-      # if user_input == "13":
-        # self.controller.next_page = ""
+      if user_input == "13":
+        self.controller.next_page = "LoadBackupPage"
