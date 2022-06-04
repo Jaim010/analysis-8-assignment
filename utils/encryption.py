@@ -27,6 +27,21 @@ def decrypt(text: str) -> str:
 
 
 if __name__ == "__main__":
+  """
+  Windows: 
+    python ./utils/encryption.py [-d] <INPUT_STRING>
+    python ./utils/encryption.py [-e] <INPUT_STRING>
+    
+    Example:
+      python ./utils/encryption.py -e HelloWorld!
+    
+  Unix:
+    python3 ./utils/encryption.py [-d] <INPUT_STRING>
+    python3 ./utils/encryption.py [-e] <INPUT_STRING>
+    
+    Example:
+      python ./utils/encryption.py -d q^È^Ê^Ò^ÖZYXH
+  """
   import sys
   if len(sys.argv) > 3:
     raise f"Too many arguments. Expected 2, got {len(sys.argv)}" 
