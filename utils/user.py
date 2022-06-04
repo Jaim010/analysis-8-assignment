@@ -1,9 +1,10 @@
+from dataclasses import dataclass
 from datetime import date
 
+@dataclass
 class User():
-  def __init__(self, first_name, last_name, username, authorization_level, registration_date) -> None:
-    self.first_name: str = first_name
-    self.last_name: str = last_name
-    self.username: str = username
-    self.authorization_level: int = authorization_level
-    self.registration_date: date = registration_date
+  first_name: str 
+  last_name: str 
+  username: str 
+  authorization_level: int 
+  registration_date: date 
