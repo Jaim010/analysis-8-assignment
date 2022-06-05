@@ -25,14 +25,14 @@ class TestDatabase(unittest.TestCase):
     
 
 def create_test_func(query_param):
-  def test_sql_injections(self):
+  def test_sql_injections_query_param(self):
     with open("./tests/test_cases.txt", "r") as f:
       test_cases = f.readlines()
 
     for test in test_cases:
       result = database.execute_query("SELECT * FROM users WHERE username=?", query_param)
       self.assertEqual(0, len(result))
-  return test_sql_injections
+  return test_sql_injections_query_param
 
 
 # Reads test cases
