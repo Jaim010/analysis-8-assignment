@@ -4,3 +4,4 @@
 .idea
 /backups/
 db.sqlite
+test.sqlite
