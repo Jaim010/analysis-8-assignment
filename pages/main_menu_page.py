@@ -81,7 +81,7 @@ class MainMenuPage(Page):
 
     logger.log(
       activity="Main Menu",
-      information=f"User entered: {user_input}, continuing to: {self.controller.next_page}",
+      information=f"User entered: {user_input if user_input != '' else 'enter-key'} | continuing to: {self.controller.next_page}",
       user=self.controller.user,
     )
     

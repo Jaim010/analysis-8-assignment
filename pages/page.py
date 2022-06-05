@@ -5,9 +5,9 @@ class Page(ABC):
     self.controller = controller
   
   def display(self) -> None:
-    self.refresh()
+    self.cls()
 
-  def refresh(self) -> None:
+  def cls(self) -> None:
     import os
     if(os.name == "posix"):
       os.system("clear")

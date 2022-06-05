@@ -1,16 +1,6 @@
 from typing import Callable, List
 import re
-
-class __bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+from utils.bcolors import bcolors
 
 class Result:
     
@@ -39,7 +29,7 @@ def get_user_input(question: str, validators: List[Callable[[str], Result]]) -> 
         result = validator(user_input)
         
         if not result.valid:
-            print(f"{__bcolors.FAIL}{result.message}{__bcolors.ENDC}")
+            print(f"{bcolors.FAIL}{result.message}{bcolors.ENDC}")
             
             return get_user_input(question, validators)
     

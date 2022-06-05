@@ -56,7 +56,7 @@ class LoadBackupPage(Page):
       )
       return
     
-    self.refresh()
+    self.cls()
     try:
       with ZipFile(f"./backups/{mapping[user_input]}", "r") as zipObj:
         zipObj.extractall("./")
