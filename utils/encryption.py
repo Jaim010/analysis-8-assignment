@@ -40,13 +40,8 @@ def encrypt(text: str) -> str:
 def decrypt(text: str) -> str:
   return __ceasar_cipher(__SUBTRACT)(text)
 
-
-
 def main(args):
-  actions = {
-    "encrypt": encrypt,
-    "decrypt": decrypt
-  }
+  actions = {func.__name__: func for func in [encrypt, decrypt]}
   
   if args.command not in actions.keys():
     raise Exception(f"No such command exists: {args.command}")
