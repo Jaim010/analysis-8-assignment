@@ -1,21 +1,14 @@
 import json
 import argparse
 
-parser = argparse.ArgumentParser()
+__settings_path = "./settings.json"
 
-parser.add_argument(
-  "--command",
-  "-c",
-  help="command to run on given string",
-)
+if __name__ == "__main__":
+  import sys
+  if sys.argv[0] ==  ".\encryption.py":
+    __settings_path = "../settings.json"
 
-parser.add_argument(
-  "text",
-  type=str,
-  help="Text to perform the command over",
-)
-
-with open("./settings.json") as file:
+with open(__settings_path) as file:
   __SETTINGS = json.load(file)
   
 __SHIFT = __SETTINGS["encryption"]["shift"]
@@ -40,7 +33,25 @@ def encrypt(text: str) -> str:
 def decrypt(text: str) -> str:
   return __ceasar_cipher(__SUBTRACT)(text)
 
-def main(args):
+# Handles given arguments, if running file as __main__
+# Example:
+#   python utils/encryption.py [--command COMMAND] <TEXT>
+#   python utils/encryption.py -c encrypt SomeText
+__parser = argparse.ArgumentParser()
+
+__parser.add_argument(
+  "--command",
+  "-c",
+  help="command to run on given string",
+)
+
+__parser.add_argument(
+  "text",
+  type=str,
+  help="text to perform the command over",
+)
+
+def __main(args):
   actions = {func.__name__: func for func in [encrypt, decrypt]}
   
   if args.command not in actions.keys():
@@ -50,7 +61,7 @@ def main(args):
   print(result)
 
 if __name__ == "__main__":
-  main(parser.parse_args())  
+  __main(__parser.parse_args())  
 
   
   
