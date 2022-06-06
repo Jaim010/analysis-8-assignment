@@ -4,6 +4,7 @@ import utils.validation as validation
 import utils.database as database
 import utils.logger as logger
 from utils.encryption import decrypt, encrypt
+import json
 
 class UpdateMemberAccountPage(Page):
   def __init__(self, controller) -> None:
@@ -51,13 +52,25 @@ class UpdateMemberAccountPage(Page):
                 logger.log("Change member last name", f"Changed the last name of member {membership_id} to {new_lastname}", self.controller.user, False)
             if user_input == "3":
                 print(f"Current address: {address}")
-                new_address = validation.get_user_input("> Enter the new address: ", [validation.check_length(2, 30)])
+                
+                street_name = validation.get_user_input("> Enter their street name: ", [validation.check_length(2, 30)])
+                house_number = validation.get_user_input("> Enter their house number: ", [validation.is_number(), validation.check_length(1, 10)])
+                zipcode = validation.get_user_input("> Enter their zip code: ", [validation.is_valid_zipcode()])
+                new_address = f"{zipcode} {street_name} {house_number}"
                 
                 database.execute_query("UPDATE members SET address=? WHERE membership_id=?", encrypt(new_address), membership_id)
                 logger.log("Change member address", f"Changed the address of member {membership_id} to {new_address}", self.controller.user, False)
             if user_input == "4":
                 print(f"Current city: {city}")
-                new_city = validation.get_user_input("> Enter the new address: ", [validation.check_length(2, 20)])
+                with open("./settings.json") as file:
+                    settings = json.load(file)
+                
+                available_cities = settings["available_cities"]
+                print("\nPlease pick a city from the following options: ")
+                for available_city in available_cities:
+                    print(f"- {available_city}")
+                print()
+                new_city = validation.get_user_input("> Enter their city: ", [validation.check_length(2, 30), validation.check_options(available_cities)])
                 
                 database.execute_query("UPDATE members SET city=? WHERE membership_id=?", encrypt(new_city), membership_id)
                 logger.log("Change member city", f"Changed the city of member {membership_id} to {new_city}", self.controller.user, False)

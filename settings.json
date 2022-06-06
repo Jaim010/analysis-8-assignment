@@ -4,5 +4,17 @@
   },
   "encryption": { 
     "shift": 39
-  }
+  },
+  "available_cities": [
+    "Papendrecht",
+    "Rotterdam",
+    "Amsterdam",
+    "Utrecht",
+    "Den Haag",
+    "Eindhoven",
+    "Tilburg",
+    "Groningen",
+    "Almere",
+    "Breda"
+  ]
 }

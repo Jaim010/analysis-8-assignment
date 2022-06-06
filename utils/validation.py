@@ -75,7 +75,9 @@ def is_valid_username():
 def is_valid_password():
     return check_format("^[~!@#$%&_\-+=`|\\(){}[\]:;'<>,.?/A-Za-z0-9]{8,30}$")
 
-# TODO - maybe needs to be expanded a bit.
+def is_valid_zipcode():
+    return check_format("^[1-9][0-9]{3} ?(?!sa|sd|ss|SA|SD|SS)[A-Za-z]{2}$")
+
 def is_phone_number():
     def validator(input: str):
         if not check_format("^(\s?|-)([0-9]\s{0,3}){8}$")(input).valid:
