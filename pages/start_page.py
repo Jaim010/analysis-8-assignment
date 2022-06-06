@@ -15,7 +15,7 @@ class StartPage(Page):
     )
     
     print(
-      "Welcome User!" 
+      "Welcome User!\n"
       )
     
     getpass("> Press enter to continue ...")

@@ -27,10 +27,11 @@ class MainMenuPage(Page):
         "10: Reset user password \n" +
         "11: View logs \n" +
         "12: Create backup \n" +
-        "13: Load backup \n"
+        "13: Load backup"
       )
     
     print(
+      "\n"+
       "To:\n" +
       " > logout type: /lo\n" + 
       " > quit type:   /q\n" 
