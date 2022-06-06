@@ -5,7 +5,7 @@ class App:
   def __init__(self) -> None:
     self.user: User = None
     self.pages = {}
-    for PAGE in (StartPage, LoginPage, MainMenuPage, UpdatePasswordPage, ListUsersPage, AddUserPage, DeleteUserAccountPage, UpdateUserAccountPage, ResetUserPasswordPage, AddMemberPage, UpdateMemberAccountPage, SearchMemberPage, DeleteMemberAccountPage, CreateBackupPage, LoadBackupPage, ViewLogPage):
+    for PAGE in (StartPage, LoginPage, MainMenuPage, UpdatePasswordPage, ListUsersPage, AddUserPage, DeleteUserAccountPage, UpdateUserAccountPage, ResetUserPasswordPage, AddMemberPage, UpdateMemberAccountPage, SearchMemberPage, DeleteMemberAccountPage, CreateBackupPage, LoadBackupPage, ViewLogPage, ForcedUpdatePasswordPage):
       page_name = PAGE.__name__
       page = PAGE(controller=self)
       self.pages[page_name] = page

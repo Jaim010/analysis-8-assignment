@@ -19,8 +19,12 @@ class LoginPage(Page):
     
     valid_login = login.login(self.controller, username, password)
     if valid_login:
-      self.controller.next_page = "MainMenuPage"
       logger_info = f"Succes with username: {username}"
+      
+      if self.controller.user.forced_password_udpate:
+        self.controller.next_page = "ForcedUpdatePasswordPage"
+      else: 
+        self.controller.next_page = "MainMenuPage"
       
     else:
       self.invalid_credentials = True

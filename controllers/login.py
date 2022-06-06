@@ -10,7 +10,8 @@ def login(app, username: str, password: str ) -> bool:
   
   (is_valid, user) = __validate_login(username, password)
   if (is_valid):
-    app.user = User(user[0], user[1], decrypt(user[2]), user[4], user[5])
+    # [0]=firstname, [1]=last_name, [2]=username, [3]=password, [4]=authorization_level [5]=registration_date, [6]=forced_password_udpate
+    app.user = User(user[0], user[1], decrypt(user[2]), user[4], user[5], user[6])
     login_attempts = 0
     return True
   

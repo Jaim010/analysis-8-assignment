@@ -29,7 +29,7 @@ class AddUserPage(Page):
         
     authorization_level_input = validation.get_user_input("> Enter their role: ", [validation.check_options(range(1, authorization_level))])
     
-    database.execute_query(f"INSERT INTO users VALUES (?, ?, ?, ?, ?, ?)", encrypt(first_name), encrypt(last_name), encrypt(username), encrypt(password), authorization_level_input, str(datetime.now()))
+    database.execute_query(f"INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?)", encrypt(first_name), encrypt(last_name), encrypt(username), encrypt(password), authorization_level_input, str(datetime.now()), 1)
     
     logger.log("Created account", f"Username: {username}, Role: {authentication.to_name(int(authorization_level_input))}", self.controller.user, False)
     print("Created the user.")

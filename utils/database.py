@@ -29,10 +29,11 @@ def setup() -> None:
               username TEXT, 
               password TEXT, 
               authorization_level INTEGER, 
-              registration_date TEXT 
+              registration_date TEXT,
+              forced_password_udpate INTEGER DEFAULT 1
   );""")
   cur.execute(f"""INSERT INTO users 
-              SELECT '', '', '{encrypt("superadmin")}', '{encrypt("Admin321!")}', 3, '{str(datetime.now())}'
+              SELECT '', '', '{encrypt("superadmin")}', '{encrypt("Admin321!")}', 3, '{str(datetime.now())}', 1
               WHERE NOT EXISTS (SELECT * FROM users)
               ;""")
   __connection.commit()
