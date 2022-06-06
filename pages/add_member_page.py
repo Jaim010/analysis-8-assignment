@@ -31,7 +31,6 @@ class AddMemberPage(Page):
     print("\nPlease pick a city from the following options: ")
     for available_city in available_cities:
       print(f"- {available_city}")
-    print()
     city = validation.get_user_input("> Enter their city: ", [validation.check_length(2, 30), validation.check_options(available_cities)])
     
     email = validation.get_user_input("> Enter their email: ", [validation.is_email()])
@@ -50,7 +49,11 @@ class AddMemberPage(Page):
     database.execute_query(f"INSERT INTO members VALUES (?, ?, ?, ?, ?, ?, ?, ?)", encrypt(first_name), encrypt(last_name), encrypt(address), encrypt(city), encrypt(email), encrypt(phonenumber), str(datetime.now()), membership_id)
     logger.log("Added member", f"Added member {first_name} {last_name}", self.controller.user, False)
     
-    print("Added the member to the database.")
+    print(
+      "\n"+
+      "Succesfully added member to the database." +
+      "\n"
+      )
     
     getpass("Press enter to continue to the main menu...")
     self.controller.next_page = "MainMenuPage"

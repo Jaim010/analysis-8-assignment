@@ -14,7 +14,7 @@ class ListUsersPage(Page):
     
     users = database.execute_query("SELECT * FROM users")
     assert users != None
-    
+    print("All users:\n")
     for user in users:
         first_name, last_name, username, _, authorization_level, _ = user
         first_name, last_name, username = decrypt(first_name), decrypt(last_name), decrypt(username)
@@ -24,7 +24,7 @@ class ListUsersPage(Page):
         print(""
             + "======\n"
             + f"Name: {first_name} {last_name}\n"
-            + f"Info: {username} ({authorization_level_name})"
+            + f"Info: {username} ({authorization_level_name})\n"
         )
     
     logger.log(

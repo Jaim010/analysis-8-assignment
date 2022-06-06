@@ -37,6 +37,7 @@ class MainMenuPage(Page):
       " > quit type:   /q\n" 
     )
     
+    print("Enter number or command:")
     user_input = input("> ")
     
     if user_input == "/lo":

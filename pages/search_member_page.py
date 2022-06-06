@@ -29,7 +29,7 @@ class SearchMemberPage(Page):
                 print(f"Email: {email_address}")
                 print(f"Phone number: +31-6-{mobile_phone}")
                 print(f"Membership id: {membership_id}")
-                print("\n")
+                print()
                 
                 break
     

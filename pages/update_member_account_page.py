@@ -4,6 +4,7 @@ import utils.validation as validation
 import utils.database as database
 import utils.logger as logger
 from utils.encryption import decrypt, encrypt
+from utils.bcolors import bcolors as bs
 import json
 
 class UpdateMemberAccountPage(Page):
@@ -14,7 +15,8 @@ class UpdateMemberAccountPage(Page):
     super().display()
     
     print("Please enter the membership id of the member you want to modify.")
-    membership_id = validation.get_user_input("> Enter the membership id: ", [validation.is_number(), validation.check_length(10, 10)])
+    print(f"{bs.WARNING}Note: Membership ID is 10 numbers long{bs.ENDC}")
+    membership_id = validation.get_user_input("> Enter the membership ID: ", [validation.is_number(), validation.check_length(10, 10)])
     
     members = database.execute_query("SELECT * FROM members WHERE membership_id=?", membership_id)
     

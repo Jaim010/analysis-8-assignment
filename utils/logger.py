@@ -18,7 +18,7 @@ def log(activity: str, information: str, user: User, suspicious: bool = False) -
     
     now = datetime.now()
 
-    content = f"{str(log_number): <10} {username: <15} {now.date()}{'': <1} {now.time().strftime('%H:%M:%S'): <10} {activity: <30} {information: <60} {suspicious: <5}\n"
+    content = f"{str(log_number): <10} {username: <15} {now.date()}{'': <1} {now.time().strftime('%H:%M:%S'): <10} {activity: <30} {information: <120} {suspicious: <5}\n"
     
     ## Debug ##
     with open("./plain.log", "a+", encoding="utf-8") as pf:
