@@ -21,7 +21,7 @@ class LoginPage(Page):
     if valid_login:
       logger_info = f"Succes with username: {username}"
       
-      if self.controller.user.forced_password_udpate:
+      if self.controller.user.forced_password_update:
         self.controller.next_page = "ForcedUpdatePasswordPage"
       else: 
         self.controller.next_page = "MainMenuPage"

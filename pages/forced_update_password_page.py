@@ -32,8 +32,8 @@ class ForcedUpdatePasswordPage(Page):
     pw_second_entry = validation.get_user_input("> Re-Enter new password: ", [validation.is_valid_password()])
     
     if pw_entry == pw_second_entry:
-      database.execute_query("UPDATE users SET password=?, forced_password_udpate=? WHERE username=?", encrypt(pw_entry), 1, encrypt(self.controller.user.username))
-      self.controller.user.forced_password_udpate = 1
+      database.execute_query("UPDATE users SET password=?, forced_password_update=? WHERE username=?", encrypt(pw_entry), 1, encrypt(self.controller.user.username))
+      self.controller.user.forced_password_update = 1
       logger.log("Forced password update", f"The password of {self.controller.user.username} has been updated", self.controller.user, False)
       print(
         "\n" +

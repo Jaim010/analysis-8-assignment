@@ -8,15 +8,15 @@ class User:
   username: str 
   authorization_level: int 
   registration_date: date 
-  forced_password_udpate: int
+  forced_password_update: bool
   
   @property
-  def forced_password_udpate(self):
-    return self._forced_password_udpate == 0
+  def forced_password_update(self):
+    return self._forced_password_update == 0
   
-  @forced_password_udpate.setter
-  def forced_password_udpate(self, value):
+  @forced_password_update.setter
+  def forced_password_update(self, value):
     if value in (0, 1):
-      self._forced_password_udpate = value
+      self._forced_password_update = value
     else:
       raise Exception(f"Expected value between 0 or 1. Given: {value}")

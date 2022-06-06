@@ -32,7 +32,7 @@ class ResetUserPasswordPage(Page):
         N = 16
         password = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(N))
 
-        database.execute_query("UPDATE users SET password=?, forced_password_udpate=? WHERE username=?", encrypt(password), 0, encrypt(username))        
+        database.execute_query("UPDATE users SET password=?, forced_password_update=? WHERE username=?", encrypt(password), 0, encrypt(username))        
         logger.log("Password update", f"The password for {username} has been updated", self.controller.user, False)
 
         print(f"The new password for '{username}' is '{bs.WARNING}{password}{bs.ENDC}'")

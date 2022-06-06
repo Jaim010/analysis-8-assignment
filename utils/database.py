@@ -30,7 +30,7 @@ def setup() -> None:
               password TEXT, 
               authorization_level INTEGER, 
               registration_date TEXT,
-              forced_password_udpate INTEGER DEFAULT 1
+              forced_password_update INTEGER DEFAULT 1
   );""")
   cur.execute(f"""INSERT INTO users 
               SELECT '', '', '{encrypt("superadmin")}', '{encrypt("Admin321!")}', 3, '{str(datetime.now())}', 1
