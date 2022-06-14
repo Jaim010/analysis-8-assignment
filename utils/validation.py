@@ -73,7 +73,7 @@ def is_valid_username():
     return check_format("^[A-Za-z]{1}[_'.A-Za-z0-9]{5,9}$")
 
 def is_valid_password():
-    return check_format("^[~!@#$%&_\-+=`|\\(){}[\]:;'<>,.?/A-Za-z0-9]{8,30}$")
+    return check_format("^(?=(?:.*[A-Z]){1,})(?=(?:.*[a-z]){1,})(?=(?:.*\d){1,})(?=(?:.*[~!@#$%&_\-+=`|\\\(\){}\[\]:;'<>,.?\/]){1,})([A-Za-z0-9~!@#$%&_\-+=`|\\\(\){}\[\]:;'<>,.?\/]{8,30})$")
 
 def is_valid_zipcode():
     return check_format("^[1-9][0-9]{3} ?(?!sa|sd|ss|SA|SD|SS)[A-Za-z]{2}$")

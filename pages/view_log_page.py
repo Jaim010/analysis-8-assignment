@@ -15,7 +15,13 @@ class ViewLogPage(Page):
     
     print("Log content: \n")
     for line in decrypted_content:
-      print(line)
+      # print(line)
+      if line != "" and len(line) > 2:
+        line = line.strip()
+        suspicious_flag = line[-1]
+        line = line[0:-2]
+        line += ("Suspicious" if suspicious_flag == 1 else "Not suspicious")
+        print(line)
     
     logger.log(
       activity="Viewing log content",
