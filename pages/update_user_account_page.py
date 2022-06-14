@@ -22,7 +22,7 @@ class UpdateUserAccountPage(Page):
         print(f"\nNo user exists with the username {username} (or you do not have the permission to update their information)")
     else:
         user = users[0]
-        first_name, last_name, current_username, _, authorization_level, _ = user
+        first_name, last_name, current_username, _, authorization_level, _, _ = user
         first_name, last_name, current_username = decrypt(first_name), decrypt(last_name), decrypt(current_username)
         
         while True:

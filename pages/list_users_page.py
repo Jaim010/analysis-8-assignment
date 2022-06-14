@@ -16,7 +16,7 @@ class ListUsersPage(Page):
     assert users != None
     print("All users:\n")
     for user in users:
-        first_name, last_name, username, _, authorization_level, _ = user
+        first_name, last_name, username, _, authorization_level, _, _ = user
         first_name, last_name, username = decrypt(first_name), decrypt(last_name), decrypt(username)
         
         authorization_level_name = authentication.to_name(authorization_level)
