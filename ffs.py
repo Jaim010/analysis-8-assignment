@@ -1,3 +1,6 @@
+# 1008138 - Thomas Poelman
+# 0950044 - Jamey Schaap
+
 import json
 import utils.database as database
 from controllers.app import App
